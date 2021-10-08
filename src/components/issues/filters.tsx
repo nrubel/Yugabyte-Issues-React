@@ -1,19 +1,22 @@
-import React, {useState, MouseEvent} from 'react';
+import React, {useState, MouseEvent, FC} from 'react';
 import {Grid, Box, Typography, Button, Menu, MenuItem} from "@mui/material";
 import classes from '../../styles/issues_filter';
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import FilterIcon from "../icons/filter";
 import {useRecoilState} from "recoil";
-import {filterState, loadNowState, sortByState} from "../../recoil/atoms";
+import {filterState, sortByState} from "../../recoil/atoms";
 
-const Filters = () => {
+interface Props {
+  getIssues: Function
+}
+
+const Filters: FC<Props> = ({getIssues}) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [, setLoadNow] = useRecoilState(loadNowState)
   const open = Boolean(anchorEl);
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => setAnchorEl(event.currentTarget);
   const handleClose = () => {
     setAnchorEl(null);
-    setLoadNow(true)
+    getIssues(1, true)
   }
 
   const [anchorEl2, setAnchorEl2] = useState<null | HTMLElement>(null);
@@ -21,7 +24,7 @@ const Filters = () => {
   const handleClick2 = (event: MouseEvent<HTMLButtonElement>) => setAnchorEl2(event.currentTarget);
   const handleClose2 = () => {
     setAnchorEl2(null);
-    setLoadNow(true)
+    getIssues(1, true)
   }
 
   const [sortBy, setSortBy] = useRecoilState(sortByState)

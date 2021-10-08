@@ -32,6 +32,16 @@ export interface Reactions {
   eyes: number;
 }
 
+export interface Label{
+  id: number;
+  node_id: string;
+  url: string;
+  name: string;
+  color: string;
+  default: boolean;
+  description: string;
+}
+
 export interface Issue {
   url: string;
   repository_url: string;
@@ -44,20 +54,28 @@ export interface Issue {
   number: number;
   title: string;
   user: User;
-  labels: any[];
+  labels: Label[];
   state: string;
   locked: boolean;
-  assignee?: any;
-  assignees: any[];
+  assignee?: User;
+  assignees: User[];
   milestone?: any;
   comments: number;
-  created_at: Date;
-  updated_at: Date;
-  closed_at?: any;
+  created_at: string;
+  updated_at: string;
+  closed_at?: string;
   author_association: string;
   active_lock_reason?: any;
   body: string;
   reactions: Reactions;
   timeline_url: string;
   performed_via_github_app?: any;
+}
+
+export interface UserData {
+  login: string;
+  id: number;
+  avatar_url: string;
+  type: string;
+  name: string;
 }

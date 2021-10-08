@@ -30,3 +30,8 @@ export const loadNowState = atom<boolean>({
   key: 'loadNowState',
   default: true,
 })
+
+export const userState = atom<any>({
+  key: 'userState',
+  default: {},
+})

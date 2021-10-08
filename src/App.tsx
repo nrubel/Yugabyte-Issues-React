@@ -11,7 +11,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <SnackbarProvider maxSnack={5}>
+      <SnackbarProvider maxSnack={3}>
         <BrowserRouter>
             <Switch>
               <Route exact path={`/`}><IssuesScreen /></Route>
