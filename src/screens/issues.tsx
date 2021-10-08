@@ -7,6 +7,7 @@ import {hasMoreState, issuesState, loadNowState, pageState} from "../recoil/atom
 import {useSnackbar} from "notistack";
 import {filterValue, issueList, sortByValue} from "../recoil/selectors";
 import {Issue} from "../recoil/models";
+// import mockList from '../utils/mock.json'
 
 const IssuesScreen = () => {
   const {enqueueSnackbar} = useSnackbar();
@@ -61,7 +62,7 @@ const IssuesScreen = () => {
       setLoading(false)
       enqueueSnackbar(e?.message || 'Something went wrong!', {variant: 'error'})
     }
-  }, [page, filter, sort, loadNow, setLoadNow, list, loading, enqueueSnackbar, setHasMore, setIssues])
+  }, [page, filter, sort, list, enqueueSnackbar, setHasMore, setIssues])
 
   useEffect(() => {
     if (loadNow && !loading) {
@@ -70,7 +71,7 @@ const IssuesScreen = () => {
         await getIssues()
       })()
     }
-  }, [loadNow, loading, getIssues])
+  }, [loadNow, loading, getIssues, setLoadNow])
 
   return (
     <AppWrapper>
