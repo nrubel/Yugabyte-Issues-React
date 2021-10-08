@@ -6,6 +6,7 @@ import {useRecoilCallback, useRecoilState, useRecoilValue} from "recoil";
 import {hasMoreState, issuesState, loadNowState, pageState} from "../recoil/atoms";
 import {useSnackbar} from "notistack";
 import {filterValue, issueList, sortByValue} from "../recoil/selectors";
+import {Issue} from "../recoil/models";
 
 const IssuesScreen = () => {
   const {enqueueSnackbar} = useSnackbar();
@@ -46,12 +47,14 @@ const IssuesScreen = () => {
 
   const getIssues = useCallback(async () => {
     try {
-      console.log(!loading, loadNow)
       setLoading(true)
       const res = await issuesApi(filter, sort, page)
-      if (!!res.data && res.data.length)
-        setIssues([...list, ...res.data])
-      else
+      if (!!res.data && res.data.length) {
+        const issues: Issue[] = [...list, ...res.data].filter((value, index, self) => {
+          return self.indexOf(value) === index
+        })
+        setIssues(issues)
+      } else
         setHasMore(false)
       setLoading(false)
     } catch (e: any) {
