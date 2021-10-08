@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import AppWrapper from "./components/wrapper";
 import {CssBaseline, ThemeProvider} from "@mui/material";
 import theme from "./utils/theme";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
