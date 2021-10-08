@@ -1,5 +1,5 @@
 import React from 'react';
-import AppWrapper from "../wrapper";
+import AppWrapper from "../components/wrapper";
 
 const IssuesScreen = () => {
   return (
